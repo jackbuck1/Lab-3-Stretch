@@ -18,6 +18,13 @@ pipeline{
                 sh "docker volume create lab3_stretch_volume"
             }
         }
+        stage("Security Scan"){
+            steps{
+                //Use Trivy to scan for vulnerabilities within each build
+                echo "Running security scan"
+                sh "trivy fs /var/lib/jenkins/app.py"
+                    }
+                }
         stage("App Build"){
             steps{
                 // app.py
@@ -32,14 +39,6 @@ pipeline{
                 echo "Running containers"
                 sh "docker run -d --network lab_3_stretch_network --name flask-app app.py:latest"
                 sh "docker run -d -p 8081:80 --network lab_3_stretch_network --name nginxvolume mynginx:latest"
-            
-        stage("Security Scan"){
-            steps{
-                //Use Trivy to scan for vulnerabilities within each build
-                echo "Running security scan"
-                sh "trivy fs /var/lib/jenkins/app.py"
-                    }
-                }
             }
         }
     }
