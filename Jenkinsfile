@@ -6,7 +6,7 @@ pipeline{
             steps{
                 //Removes all containers (storage saving) - single speech marks used on 2nd shell as there is a $
                 echo "Cleaning up containers"
-                sh 'docker rm -f flask-app || true"'
+                sh "docker rm -f flask-app || true"
             }
         }
         stage("Setup"){
