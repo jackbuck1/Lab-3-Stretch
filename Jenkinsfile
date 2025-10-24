@@ -23,6 +23,7 @@ pipeline{
                 // app.py
                 echo "Building app"
                 sh "docker build -t app.py:latest ."
+                sh "docker build -t mynginx -f Dockerfile.nginx ."
                 }   
             }
         stage("Run Containers"){
@@ -30,7 +31,7 @@ pipeline{
                 //Run the containers that have been built in Docker. Have to run on port 8081 as port 8080 is occupied by Java / -v = --mount
                 echo "Running containers"
                 sh "docker run -d --network lab_3_stretch_network --name flask-app app.py:latest"
-                sh "docker run -d -p 8081:80 --network lab_3_stretch_network --name nginxvolume -v nginx.conf:/etc/nginx/nginx.conf nginx:latest"
+                sh "docker run -d -p 8081:80 --network lab_3_stretch_network --name nginxvolume mynginx:latest"
             }
         }
     }
