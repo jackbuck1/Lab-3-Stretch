@@ -15,7 +15,7 @@ pipeline{
                 echo "Configuring networks & volumes"
                 sh "docker network create lab_3_stretch_network || true"
                 sh "docker volume create lab3_stretch_volume"
-                sh "docker run -d -p 80:80 --name nginxvolume --mount type=volume,source=lab3_stretch_volume,target=<path/on/container> <app.py:lastest>"
+                sh "docker run -d -p 8081:80 --name nginxvolume --mount type=volume,source=lab3_stretch_volume,target=/app app.py"
             }
         }
         stage("App Build"){
