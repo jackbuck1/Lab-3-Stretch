@@ -5,6 +5,7 @@ pipeline{
         stage("Cleanup"){
             steps{
                 //Removes all containers (storage saving) - single speech marks used on 2nd shell as there is a $
+                //Change shell command to only remove relevant containers e.g prune command 
                 echo "Cleaning up containers"
                 sh 'docker rm $(docker ps -aq) || true'
             }
