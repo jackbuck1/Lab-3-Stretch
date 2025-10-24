@@ -29,7 +29,7 @@ pipeline{
             steps{
                 //Run the containers that have been built in Docker. Have to run on port 8081 as port 8080 is occupied by Java
                 echo "Running containers"
-                sh "docker run -d --name <container name> -p 8081:80 app.py:latest"
+                sh "docker run -d --name app.py -p 8081:80 app.py:latest"
             }
         }
     }
