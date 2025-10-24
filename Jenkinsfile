@@ -22,7 +22,7 @@ pipeline{
             steps{
                 //Use Trivy to scan for vulnerabilities within each build
                 echo "Running security scan"
-                sh "trivy fs /var/lib/jenkins/app.py"
+                sh "trivy fs /var/lib/jenkins"
                     }
                 }
         stage("App Build"){
