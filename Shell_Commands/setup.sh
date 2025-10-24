@@ -1,0 +1,1 @@
+# enter sh commands in here to make jenkins file more tidy
